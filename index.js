@@ -6,7 +6,7 @@ const {
 } = require('discord-api-types/v9');
 const fs = require('fs');
 const colors = require("@retronbv/colors")
-const express = require('express')
+const http = require('http')
 module.exports = {
     register_slash: async (token, gid, cid, cpath) => {
         const commands = [];
@@ -35,12 +35,11 @@ module.exports = {
         }
     },
     keep_alive: () => {
-        const app = express()
-        app.get('/', (req, res) => {
-            res.send('Hello from beeptools!')
-        })
-        app.listen(3000, () => {
-          console.log(`${colors.blue}[BEEPTOOLS]${colors.reset} "Keep alive" server started at: ${colors.green}http://localhost:3000${colors.reset}`)
-        })
+      http.createServer((req,res)=>{
+        res.writeHead(200, {'Content-Type':'text/html'});
+        res.write('Hello from beeptools!')
+        res.end()
+      }).listen(8080)
+      console.log(`${colors.blue}[BEEPTOOLS]${colors.reset} "Keep alive" server started at: ${colors.green}http://localhost:3000${colors.reset}`)
     }
 }
