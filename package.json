@@ -1,6 +1,6 @@
 {
   "name": "beeptools",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,5 +18,10 @@
     "@discordjs/rest": "0.1.0-canary.0",
     "@retronbv/colors": "^1.0.0",
     "discord-api-types": "^0.25.2"
+  },
+  "homepage": "https://github.com/retronbv/beeptools#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/retronbv/beeptools.git"
   }
 }

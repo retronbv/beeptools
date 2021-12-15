@@ -8,11 +8,11 @@ const fs = require('fs');
 const colors = require("@retronbv/colors")
 const http = require('http')
 module.exports = {
-    register_slash: async (token, gid, cid, cpath) => {
+    RegisterSlash: async (token, gid, cid, cpath) => {
         const commands = [];
-        const commandFiles = fs.readdirSync('./../../' + cpath).filter(file => file.endsWith('.js'));
+        const commandFiles = fs.readdirSync(__dirname+'/' + cpath).filter(file => file.endsWith('.js'));
         for (const file of commandFiles) {
-            const command = require(`./../../${cpath}/${file}`);
+            const command = require(`${__dirname}/${cpath}/${file}`);
             commands.push(command.meta.toJSON());
         }
 
@@ -34,12 +34,15 @@ module.exports = {
             console.error(error);
         }
     },
-    keep_alive: () => {
+    KeepAlive: () => {
       http.createServer((req,res)=>{
         res.writeHead(200, {'Content-Type':'text/html'});
         res.write('Hello from beeptools!')
         res.end()
       }).listen(8080)
       console.log(`${colors.blue}[BEEPTOOLS]${colors.reset} "Keep alive" server started at: ${colors.green}http://localhost:3000${colors.reset}`)
+    },
+    Builders: {
+      SlashCommandBuilder: require("./builders/slashcommand.js")
     }
 }

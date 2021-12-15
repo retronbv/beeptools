@@ -8,25 +8,22 @@
 Just simply import into your code! 
 ```js
 const beeptools = require("beeptools")
-beeptools.register_slash(process.env.TOKEN, guildId, clientId, "path/to/slash/commands/dir");
+beeptools.RegisterSlash(process.env.TOKEN, guildId, clientId, "path/to/slash/commands/dir");
 // Now my slash commands are up to date :D
 ```
 
 **What you can do (so far 😏):**
  - Easily update slash commands as you develop
+ - Create slash commands easily
  - Create a "keep alive" webserver
 
 #### Here is how your slash command file should look:
 ```js
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { Builders } = require('beeptools');
 
-const data = new SlashCommandBuilder()
-	.setName('ping')
-	.setDescription('Simple ping command!')
-module.exports = {
-  meta:data,
-  run: (async (inter)=>{
-    await inter.reply({ content: 'Pong!'})
-  })
-}
+// I can easily make a slash command with the slash command builder!
+
+module.exports = Builders.SlashCommandBuilder.Builder(Builders.SlashCommandBuilder.MetaBuilder("ping", "Simple ping command!"), (interaction)=>{
+  await interaction.reply({content:"Ping!"})
+})
 ```
