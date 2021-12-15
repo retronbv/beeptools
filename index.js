@@ -10,9 +10,9 @@ const http = require('http')
 module.exports = {
     RegisterSlash: async (token, gid, cid, cpath) => {
         const commands = [];
-        const commandFiles = fs.readdirSync(__dirname+'/' + cpath).filter(file => file.endsWith('.js'));
+        const commandFiles = fs.readdirSync(cpath).filter(file => file.endsWith('.js'));
         for (const file of commandFiles) {
-            const command = require(`${__dirname}/${cpath}/${file}`);
+            const command = require(`${cpath}/${file}`);
             commands.push(command.meta.toJSON());
         }
 
